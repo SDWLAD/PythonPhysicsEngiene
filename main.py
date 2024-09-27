@@ -4,7 +4,7 @@ from shape import Shape
 sc = pg.display.set_mode((800, 600))
 clock = pg.time.Clock()
 
-objects = [Shape(400, 300)]
+objects = [Shape(0, 300)]
 
 while 1:
     for e in pg.event.get():
