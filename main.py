@@ -1,10 +1,13 @@
 import pygame as pg
-from shape import Shape
+from circleObject import CircleObject
 
 sc = pg.display.set_mode((800, 600))
 clock = pg.time.Clock()
 
-objects = [Shape(0, 300)]
+objects = [
+    CircleObject(pg.Vector2(400, 300), 10),
+    CircleObject(pg.Vector2(400, 400), 10),
+]
 
 while 1:
     for e in pg.event.get():
