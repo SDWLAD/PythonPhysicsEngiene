@@ -7,6 +7,12 @@ class CircleObject(PhysicsObject):
         self.position = position
         self.radius = radius
         self.weight = 0.5
+    
+    def collision(self, other):
+        if isinstance(other, CircleObject):
+            if (self.position - other.position).length() < self.radius + other.radius:
+                return True
+        return False
 
     def draw(self, sc):
         pg.draw.circle(sc, (255, 255, 255), self.position, self.radius)
