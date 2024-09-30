@@ -6,9 +6,9 @@ class CircleObject(PhysicsObject):
         super().__init__()
         self.position = position
         self.radius = radius
-        self.weight = 0.5
+        self.mass = 0.5
     
-    def collision(self, other):
+    def is_collision(self, other):
         if isinstance(other, CircleObject):
             if (self.position - other.position).length() < self.radius + other.radius:
                 return True

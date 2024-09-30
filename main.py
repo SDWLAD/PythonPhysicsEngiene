@@ -1,5 +1,6 @@
 import pygame as pg
 from circleObject import CircleObject
+from physicsObject import PhysicsObject
 
 sc = pg.display.set_mode((800, 600))
 clock = pg.time.Clock()
@@ -20,6 +21,8 @@ while 1:
     for obj in objects:
         obj.update()
         obj.draw(sc)
-    print(objects[0].collision(objects[1]))
+
+    PhysicsObject.check_collisions()
+        
     pg.display.flip()
     clock.tick(60)
