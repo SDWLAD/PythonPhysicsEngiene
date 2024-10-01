@@ -10,7 +10,6 @@ objects = [
     CircleObject(pg.Vector2(400, 400), 10),
 ]
 
-objects[1].kinematic = True
 
 while 1:
     for e in pg.event.get():

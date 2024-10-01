@@ -13,6 +13,7 @@ class PhysicsObject:
     def __init__(self):
         self.position = Vector2(0, 0)
         self.velocity = Vector2(0, 0)
+        self.acceleration = Vector2(0, 0)
         self.mass = 1
         self.drag = 1
         self.kinematic = False
@@ -20,14 +21,16 @@ class PhysicsObject:
     def draw(self, sc):...
     
     def gravity(self):
-        self.velocity.y += self.mass
+        gravity = Vector2(0, 0.098*self.mass)
+        self.acceleration += gravity
     
     def is_collision(self, other):...
 
     def update(self):
         if self.kinematic: return
-        self.velocity *= self.drag
         self.gravity()
+        self.velocity += self.acceleration
+        self.velocity *= self.drag
         self.position += self.velocity
     
     @classmethod
@@ -37,4 +40,5 @@ class PhysicsObject:
                 if cls._all_objects[i].is_collision(cls._all_objects[j]):
                     this_object:PhysicsObject = cls._all_objects[i]
                     other_object:PhysicsObject = cls._all_objects[j]
+                    this_object.acceleration.y=1
                     this_object.velocity.y=-1
