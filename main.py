@@ -10,6 +10,7 @@ objects = [
     CircleObject(pg.Vector2(400, 400), 10),
 ]
 
+objects[0].player = True
 
 while 1:
     for e in pg.event.get():

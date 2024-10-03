@@ -15,8 +15,9 @@ class PhysicsObject:
         self.velocity = Vector2(0, 0)
         self.acceleration = Vector2(0, 0)
         self.mass = 1
-        self.drag = 1
+        self.drag = 0.9
         self.kinematic = False
+        self.player = False
     
     def draw(self, sc):...
     
@@ -26,10 +27,18 @@ class PhysicsObject:
     
     def is_collision(self, other):...
 
+    def control(self):
+        keys = pg.key.get_pressed()
+        if keys[pg.K_UP]: self.velocity.y = -1
+        if keys[pg.K_DOWN]: self.velocity.y = 1
+        if keys[pg.K_LEFT]: self.velocity.x = -1
+        if keys[pg.K_RIGHT]: self.velocity.x = 1
+
     def update(self):
         if self.kinematic: return
-        self.gravity()
-        self.velocity += self.acceleration
+        if self.player: self.control()
+        # self.gravity()
+        # self.velocity += self.acceleration
         self.velocity *= self.drag
         self.position += self.velocity
     
