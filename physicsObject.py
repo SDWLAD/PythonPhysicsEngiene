@@ -38,7 +38,7 @@ class PhysicsObject:
         if self.kinematic: return
         if self.player: self.control()
         # self.gravity()
-        # self.velocity += self.acceleration
+        self.velocity += self.acceleration
         self.velocity *= self.drag
         self.position += self.velocity
     
