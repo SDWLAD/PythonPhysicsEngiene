@@ -11,6 +11,7 @@ objects = [
 ]
 
 objects[0].player = True
+objects[1].player = True
 
 while 1:
     for e in pg.event.get():
