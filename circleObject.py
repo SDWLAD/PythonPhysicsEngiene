@@ -5,7 +5,7 @@ class CircleObject(PhysicsObject):
     def __init__(self, position, radius):
         super().__init__()
         self.position = position
-        self.radius = radius
+        self.radius = radius/2
         self.mass = 0.5
     
     def is_collision(self, other):

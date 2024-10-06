@@ -37,7 +37,8 @@ class PhysicsObject:
     def update(self):
         if self.kinematic: return
         if self.player: self.control()
-        # self.gravity()
+        
+        self.gravity()
         self.velocity += self.acceleration
         self.velocity *= self.drag
         self.position += self.velocity
@@ -45,9 +46,8 @@ class PhysicsObject:
     @classmethod
     def check_collisions(cls):
         for i in range(len(cls._all_objects)):
-            for j in range(i + 1, len(cls._all_objects)):
+            for j in range(len(cls._all_objects)):
                 if cls._all_objects[i].is_collision(cls._all_objects[j]):
                     this_object:PhysicsObject = cls._all_objects[i]
                     other_object:PhysicsObject = cls._all_objects[j]
-                    this_object.acceleration.y=1
-                    this_object.velocity.y=-1
+                    this_object.position += (this_object.position - other_object.position).normalize()*this_object.radius

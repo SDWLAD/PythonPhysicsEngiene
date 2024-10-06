@@ -6,12 +6,10 @@ sc = pg.display.set_mode((800, 600))
 clock = pg.time.Clock()
 
 objects = [
-    CircleObject(pg.Vector2(400, 300), 10),
-    CircleObject(pg.Vector2(400, 400), 10),
+    CircleObject(pg.Vector2(400, 350), 20),
+    CircleObject(pg.Vector2(400, 400), 20),
 ]
 
-objects[0].player = True
-objects[1].player = True
 
 while 1:
     for e in pg.event.get():
@@ -19,11 +17,15 @@ while 1:
             quit()
     sc.fill((0, 0, 0))
 
+    if pg.mouse.get_pressed()[0]:
+        pos = pg.mouse.get_pos()
+        objects.append(CircleObject((pos[0], pos[1]), 20))
+
     for obj in objects:
         obj.update()
         obj.draw(sc)
 
-    PhysicsObject.check_collisions()
+    # PhysicsObject.check_collisions()
         
     pg.display.flip()
     clock.tick(60)
