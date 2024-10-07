@@ -1,5 +1,7 @@
 from physicsObject import PhysicsObject
 import pygame as pg
+from settings import SCREEN_SIZE
+from pygame import Vector2
 
 class CircleObject(PhysicsObject):
     def __init__(self, position, radius):
@@ -13,6 +15,23 @@ class CircleObject(PhysicsObject):
             if (self.position - other.position).length() < self.radius + other.radius:
                 return True
         return False
+
+    def clamp_display(self):
+        if self.position.x - self.radius < 0:
+            self.position = Vector2(self.radius, self.position.y)
+            self.velocity = Vector2(abs(self.velocity.x)*self.elasticity, self.velocity.y)
+
+        if self.position.x + self.radius > SCREEN_SIZE[0]:
+            self.position = Vector2(SCREEN_SIZE[0]-self.radius, self.position.y)
+            self.velocity = Vector2(-abs(self.velocity.x)*self.elasticity, self.velocity.y)
+
+        if self.position.y - self.radius < 0:
+            self.position = Vector2(self.position.x, self.radius)
+            self.velocity = Vector2(self.velocity.x, abs(self.velocity.y)*self.elasticity)
+
+        if self.position.y + self.radius > SCREEN_SIZE[1]:
+            self.position = Vector2(self.position.x, SCREEN_SIZE[1]-self.radius)
+            self.velocity = Vector2(self.velocity.x, -abs(self.velocity.y)*self.elasticity)
 
     def draw(self, sc):
         pg.draw.circle(sc, (255, 255, 255), self.position, self.radius)

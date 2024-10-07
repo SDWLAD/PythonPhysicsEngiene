@@ -13,19 +13,18 @@ class PhysicsObject:
     def __init__(self):
         self.position = Vector2(0, 0)
         self.velocity = Vector2(0, 0)
-        self.acceleration = Vector2(0, 0)
-        self.mass = 1
-        self.drag = 0.9
         self.kinematic = False
         self.player = False
+        self.elasticity = 0.3
     
     def draw(self, sc):...
+    def clamp_display(self):...
+    def is_collision(self, other):...
     
     def gravity(self):
-        gravity = Vector2(0, 0.098*self.mass)
-        self.acceleration += gravity
+        gravity = Vector2(0, 0.9807)
+        self.velocity += gravity
     
-    def is_collision(self, other):...
 
     def control(self):
         keys = pg.key.get_pressed()
@@ -37,12 +36,12 @@ class PhysicsObject:
     def update(self):
         if self.kinematic: return
         if self.player: self.control()
-        
+
         self.gravity()
-        self.velocity += self.acceleration
-        self.velocity *= self.drag
         self.position += self.velocity
+        self.clamp_display()
     
+
     @classmethod
     def check_collisions(cls):
         for i in range(len(cls._all_objects)):
