@@ -26,7 +26,7 @@ while 1:
         obj.update()
         obj.draw(sc)
 
-    # PhysicsObject.check_collisions()
+    PhysicsObject.check_collisions()
         
     pg.display.flip()
     clock.tick(60)
