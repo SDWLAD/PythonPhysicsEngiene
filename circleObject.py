@@ -15,6 +15,23 @@ class CircleObject(PhysicsObject):
             if (self.position - other.position).length() < self.radius + other.radius:
                 return True
         return False
+    
+    def check_collisions(self, other):
+        if self.is_collision(other):            
+            dis = self.position - other.position
+            dif = self.radius+other.radius-dis.length()
+
+            try:dis = dis.normalize()
+            except:...
+
+            ave_elasticity = ((self.elasticity+other.elasticity)/2)
+            d1 = dis * (dif/2)
+            d2 = dis * dif * ave_elasticity * 10
+
+            self.position += d1
+            other.position += -d1
+            self.velocity += d2
+            other.velocity += -d2
 
     def clamp_display(self):
         if self.position.x - self.radius < 0:

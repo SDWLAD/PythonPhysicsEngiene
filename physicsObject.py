@@ -40,27 +40,9 @@ class PhysicsObject:
         self.gravity()
         self.position += self.velocity
         self.clamp_display()
+        for i in PhysicsObject._all_objects:
+            if i != self:
+                self.check_collisions(i)
     
 
-    @classmethod
-    def check_collisions(cls):
-        for i in range(len(cls._all_objects)):
-            for j in range(len(cls._all_objects)):
-                if cls._all_objects[i].is_collision(cls._all_objects[j]):
-                    this_object:PhysicsObject = cls._all_objects[i]
-                    other_object:PhysicsObject = cls._all_objects[j]
-                    
-                    dis = this_object.position - other_object.position
-                    dif = this_object.radius+other_object.radius-dis.length()
-
-                    try:dis = dis.normalize()
-                    except:...
-
-                    ave_elasticity = ((this_object.elasticity+other_object.elasticity)/2)
-                    d1 = dis * (dif/2)
-                    d2 = dis * dif * ave_elasticity * 10
-
-                    this_object.position += d1
-                    other_object.position += -d1
-                    this_object.velocity += d2
-                    other_object.velocity += -d2
+    def check_collisions(self, other):...

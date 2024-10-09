@@ -7,8 +7,8 @@ sc = pg.display.set_mode(SCREEN_SIZE)
 clock = pg.time.Clock()
 
 objects = [
-    CircleObject(pg.Vector2(400, 350), 20),
-    CircleObject(pg.Vector2(400, 400), 20),
+    CircleObject(pg.Vector2(400, 350), 10),
+    CircleObject(pg.Vector2(400, 400), 10),
 ]
 
 
@@ -26,7 +26,6 @@ while 1:
         obj.update()
         obj.draw(sc)
 
-    PhysicsObject.check_collisions()
         
     pg.display.flip()
-    clock.tick(60)
+    clock.tick(40)
