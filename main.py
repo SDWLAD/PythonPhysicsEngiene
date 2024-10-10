@@ -20,7 +20,7 @@ while 1:
 
     if pg.mouse.get_pressed()[0]:
         pos = pg.mouse.get_pos()
-        objects.append(CircleObject(pg.Vector2(pos[0], pos[1]), 20))
+        objects.append(CircleObject(pg.Vector2(pos[0], pos[1]), 10))
 
     for obj in objects:
         obj.update()
