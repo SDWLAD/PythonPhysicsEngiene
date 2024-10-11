@@ -51,4 +51,4 @@ class CircleObject(PhysicsObject):
             self.velocity = Vector2(self.velocity.x, -abs(self.velocity.y)*self.elasticity)
 
     def draw(self, sc):
-        pg.draw.circle(sc, (255, 255, 255), self.position, self.radius)
+        pg.draw.circle(sc, self.color, self.position, self.radius)

@@ -1,3 +1,4 @@
+from random import randint
 from pygame import Vector2
 import pygame as pg
 
@@ -13,6 +14,7 @@ class PhysicsObject:
     def __init__(self):
         self.position = Vector2(0, 0)
         self.velocity = Vector2(0, 0)
+        self.color = (randint(0, 255), randint(0, 255), randint(0, 255))
         self.kinematic = False
         self.player = False
         self.elasticity = 0.03
