@@ -1,3 +1,4 @@
+from random import randint
 import pygame as pg
 from circleObject import CircleObject
 from physicsObject import PhysicsObject
@@ -20,7 +21,9 @@ while 1:
 
     if pg.mouse.get_pressed()[0]:
         pos = pg.mouse.get_pos()
-        objects.append(CircleObject(pg.Vector2(pos[0], pos[1]), 10))
+        r = 20
+        rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
+        objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, 10))
 
     for obj in objects:
         obj.update()
