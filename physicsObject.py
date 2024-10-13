@@ -1,6 +1,8 @@
 from random import randint
 from pygame import Vector2
 import pygame as pg
+from settings import GRAVITY_DIRECTION
+
 
 class PhysicsObject:
 
@@ -24,7 +26,7 @@ class PhysicsObject:
     def is_collision(self, other):...
     
     def gravity(self):
-        gravity = Vector2(0, 0.9807)
+        gravity = 0.9807*GRAVITY_DIRECTION
         self.velocity += gravity
     
 

@@ -8,7 +8,7 @@ sc = pg.display.set_mode(SCREEN_SIZE)
 clock = pg.time.Clock()
 
 objects = [
-    CircleObject(pg.Vector2(400, 350), 10),
+    CircleObject(pg.Vector2(410, 350), 10),
     CircleObject(pg.Vector2(400, 400), 10),
 ]
 
