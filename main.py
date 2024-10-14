@@ -3,14 +3,15 @@ import pygame as pg
 from circleObject import CircleObject
 from physicsObject import PhysicsObject
 from settings import *
+import math
 
 sc = pg.display.set_mode(SCREEN_SIZE)
 clock = pg.time.Clock()
 
-objects = [
-    CircleObject(pg.Vector2(410, 350), 10),
-    CircleObject(pg.Vector2(400, 400), 10),
-]
+objects = []
+
+# n, r = 50, 500
+# objects = [CircleObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
 
 
 while 1:

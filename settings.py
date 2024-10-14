@@ -1,4 +1,6 @@
-from pygame import Vector2
+import pygame as pg
+pg.init()
 
 SCREEN_SIZE = (1280, 720)
-GRAVITY_DIRECTION = Vector2(1, 1).normalize()
+gravity_direction = None
+gravity_point = pg.Vector2(1280/2, 720/2)

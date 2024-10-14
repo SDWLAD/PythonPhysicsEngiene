@@ -1,7 +1,7 @@
 from random import randint
 from pygame import Vector2
 import pygame as pg
-from settings import GRAVITY_DIRECTION
+from settings import *
 
 
 class PhysicsObject:
@@ -26,7 +26,13 @@ class PhysicsObject:
     def is_collision(self, other):...
     
     def gravity(self):
-        gravity = 0.9807*GRAVITY_DIRECTION
+        gravity = Vector2(0, 0)
+        if gravity_direction:
+            gravity = 0.9807*gravity_direction
+        if gravity_point != None:
+            try: direction = (gravity_point - self.position).normalize()
+            except: direction = (gravity_point - self.position)
+            gravity = 0.9807*direction
         self.velocity += gravity
     
 
