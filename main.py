@@ -18,13 +18,15 @@ while 1:
     for e in pg.event.get():
         if e.type == pg.QUIT:
             quit()
+        if e.type == pg.MOUSEWHEEL:
+            new_ball_size+=e.y
     sc.fill((0, 0, 0))
 
     if pg.mouse.get_pressed()[0]:
         pos = pg.mouse.get_pos()
         r = 20
         rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
-        objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, 10))
+        objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
     if pg.mouse.get_pressed()[2]:
         x, y = pg.mouse.get_pos()
         settings.gravity_point.x = x
