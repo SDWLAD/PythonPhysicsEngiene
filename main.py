@@ -20,6 +20,7 @@ while 1:
             quit()
         if e.type == pg.MOUSEWHEEL:
             new_ball_size+=e.y
+            new_ball_size = min(max(1, new_ball_size), 100)
     sc.fill((0, 0, 0))
 
     if pg.mouse.get_pressed()[0]:
