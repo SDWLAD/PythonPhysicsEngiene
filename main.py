@@ -28,6 +28,8 @@ while 1:
         r = 20
         rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
         objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
+
+
     if pg.mouse.get_pressed()[2]:
         x, y = pg.mouse.get_pos()
         settings.gravity_point.x = x
@@ -36,6 +38,8 @@ while 1:
     for obj in objects:
         obj.update()
         obj.draw(sc)
-             
+    
+    sc.blit(pg.font.SysFont('Arial', 20).render(str(new_ball_size), False, (255, 255, 255)), (0, 0))
+
     pg.display.flip()
     clock.tick(40)
