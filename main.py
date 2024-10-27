@@ -41,6 +41,7 @@ while 1:
     
     sc.blit(pg.font.SysFont('Arial', 20).render(str(new_ball_size), False, (255, 255, 255)), (0, 0))
     sc.blit(pg.font.SysFont('Arial', 20).render(f"FPS: {str(round(clock.get_fps()))}", False, (255, 255, 255)), (0, 20))
+    sc.blit(pg.font.SysFont('Arial', 20).render(f"Count: {str(len(objects))}", False, (255, 255, 255)), (0, 40))
 
     pg.display.flip()
     clock.tick(40)
