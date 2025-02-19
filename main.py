@@ -1,6 +1,7 @@
 from random import randint
 import pygame as pg
 from circleObject import CircleObject
+from boxObject import BoxObject
 from physicsObject import PhysicsObject
 from settings import *
 import settings
@@ -12,7 +13,8 @@ clock = pg.time.Clock()
 objects = []
 
 n, r = 50, 500
-objects = [CircleObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
+# objects = [CircleObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
+# objects = [BoxObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
 
 while 1:
     for e in pg.event.get():
@@ -27,7 +29,8 @@ while 1:
         pos = pg.mouse.get_pos()
         r = 20
         rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
-        objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
+        # objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
+        objects.append(BoxObject(rect=pg.Rect(*pos, new_ball_size, new_ball_size)))
 
 
     if pg.mouse.get_pressed()[2]:
