@@ -7,6 +7,7 @@ class BoxObject(PhysicsObject):
     def __init__(self, rect):
         super().__init__()
         self.rect = rect
+        self.position = self.rect.center
         self.mass = 0.5
     
     def is_collision(self, other):
@@ -54,6 +55,7 @@ class BoxObject(PhysicsObject):
 
         if self.rect.bottom > SCREEN_SIZE[1]:
             self.rect.bottom = SCREEN_SIZE[1]
+            self.position.y = self.rect.centery
             self.velocity.y = -abs(self.velocity.y) * self.elasticity
 
     def draw(self, sc):

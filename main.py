@@ -30,7 +30,7 @@ while 1:
         r = 20
         rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
         # objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
-        objects.append(BoxObject(rect=pg.Rect(*pos, new_ball_size, new_ball_size)))
+        objects.append(BoxObject(rect=pg.Rect(pos[0], pos[1], new_ball_size, new_ball_size)))
 
 
     if pg.mouse.get_pressed()[2]:
