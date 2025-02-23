@@ -16,6 +16,8 @@ n, r = 50, 500
 # objects = [CircleObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
 # objects = [BoxObject(pg.Vector2(((r/n)*i) * math.cos(2 * math.pi * i / n) + SCREEN_SIZE[0]/2, ((r/n)*i) * math.sin(2 * math.pi * i / n) + SCREEN_SIZE[1]/2), 10) for i in range(n)]
 
+obj_type = 0
+
 while 1:
     for e in pg.event.get():
         if e.type == pg.QUIT:
@@ -23,14 +25,21 @@ while 1:
         if e.type == pg.MOUSEWHEEL:
             new_ball_size+=e.y
             new_ball_size = min(max(1, new_ball_size), 50)
+        if e.type == pg.KEYDOWN:
+            if e.key == pg.K_SPACE:
+                obj_type += 1
+                obj_type = obj_type % 2
     sc.fill((0, 0, 0))
 
     if pg.mouse.get_pressed()[0]:
         pos = pg.mouse.get_pos()
         r = 20
         rotation = pg.Vector2(randint(-100, 100)/100, randint(-100, 100)/100).normalize()*r
-        # objects.append(CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size))
-        objects.append(BoxObject(rect=pg.Rect(pos[0], pos[1], new_ball_size, new_ball_size)))
+
+        objects.append([
+            CircleObject(pg.Vector2(pos[0], pos[1])+rotation, new_ball_size),
+            BoxObject(rect=pg.Rect(pos[0], pos[1], new_ball_size, new_ball_size))
+        ][obj_type])
 
 
     if pg.mouse.get_pressed()[2]:
