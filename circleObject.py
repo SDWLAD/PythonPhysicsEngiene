@@ -1,3 +1,5 @@
+# import math
+# from boxObject import BoxObject
 from physicsObject import PhysicsObject
 import pygame as pg
 from settings import SCREEN_SIZE
@@ -14,6 +16,12 @@ class CircleObject(PhysicsObject):
         if isinstance(other, CircleObject):
             if (self.position - other.position).length() < self.radius + other.radius:
                 return True
+        # if isinstance(other, BoxObject):
+        #     dx = self.position.x - other.rect.centerx
+        #     dy = self.position.y - other.rect.centery
+        #     distance = math.hypot(dx, dy)
+        #     if distance < self.radius + other.rect.width/2:
+        #         return True
         return False
     
     def check_collisions(self, other):

@@ -1,3 +1,5 @@
+import math
+from circleObject import CircleObject
 from physicsObject import PhysicsObject
 import pygame as pg
 from settings import SCREEN_SIZE
@@ -14,10 +16,17 @@ class BoxObject(PhysicsObject):
         if isinstance(other, BoxObject):
             if self.rect.colliderect(other.rect):
                 return True
+        if isinstance(other, CircleObject):
+            dx = self.rect.centerx - other.position.x
+            dy = self.rect.centery - other.position.y
+            distance = math.hypot(dx, dy)
+            if distance < self.rect.width/2 + other.radius:
+                return True
         return False
     
     def check_collisions(self, other):
         self.rect.center = self.position
+        if not "rect" in other.__dict__: other.rect = pg.Rect(*other.position, other.radius*2, other.radius*2)
         if self.is_collision(other):
             dis = Vector2(self.rect.center) - Vector2(other.rect.center)
             overlap_x = (self.rect.width / 2 + other.rect.width / 2) - abs(dis.x)
